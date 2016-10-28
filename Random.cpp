@@ -16,10 +16,8 @@
 #include "MQTT.h"
 
 #define LENGTH 10
-#define ADDRESS "tcp://localhost:1883"
-#define CLIENTID "ExampleClientPub"
-#define TOPIC "RandomStringsC++"
-#define TOPICSUB "RandomStringsPython"
+#define TOPIC "RandomStringsAppC"
+#define TOPICSUB "RandomStringsAppPy"
 
 Random::Random() {
 	// TODO Auto-generated constructor stub

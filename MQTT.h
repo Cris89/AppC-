@@ -16,7 +16,7 @@ public:
 	MQTT();
 
 	void connect();
-	void publish(char *payload, const char *topicName);
+	void publish(const char *payload, const char *topicName);
 	void subscribe(const char *topic);
 	void unsubscrube(const char *topic);
 	void disconnect();
