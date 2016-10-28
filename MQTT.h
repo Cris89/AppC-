@@ -21,7 +21,8 @@ public:
 	void unsubscrube(const char *topic);
 	void disconnect();
 
-	int messageArrived(void *context, const char *topicName, int topicLen, MQTTClient_message *message);
+	int messageArrived(void *context, const char *topicName, int topicLen,
+			MQTTClient_message *message);
 
 	virtual ~MQTT();
 

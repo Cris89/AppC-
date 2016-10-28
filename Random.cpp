@@ -11,9 +11,9 @@
 
 #include <unistd.h>
 
-#define LENGTH 10
-#define TOPIC "RandomStringsAppC"
-#define TOPICSUB "RandomStringsAppPy"
+#define LENGTH		10
+#define TOPIC		"RandomStringsAppC"
+#define TOPICSUB	"RandomStringsAppPy"
 
 Random::Random() {
 	// TODO Auto-generated constructor stub
@@ -52,7 +52,7 @@ int main() {
 
 	char randomString[LENGTH];
 
-	for (int i = 0; i <= 10; i++){
+	for (int i = 0; i < 10; i++) {
 		random.generateRandomString(randomString);
 		char *s = randomString;
 		mqtt.publish(s, pt);

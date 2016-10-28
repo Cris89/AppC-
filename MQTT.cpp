@@ -4,20 +4,21 @@
  *  Created on: Oct 24, 2016
  *      Author: cris
  */
+
 #include "MQTT.h"
 
 #include "MQTTClient.h"
 
 #include <cstring>
 
-#define ADDRESS "127.0.0.1:8883"
-#define CLIENTID "AppC++"
-#define TIMEOUT 10000L
+#define ADDRESS		"127.0.0.1:8883"
+#define CLIENTID	"AppC++"
+#define TIMEOUT		10000L
 
 MQTT::MQTT() {
 
 	rc = MQTTClient_create(&client, ADDRESS, CLIENTID,
-	MQTTCLIENT_PERSISTENCE_DEFAULT, NULL);
+	MQTTCLIENT_PERSISTENCE_NONE, NULL);
 
 }
 
@@ -27,29 +28,27 @@ void MQTT::connect() {
 	conn_opts.keepAliveInterval = 10;
 	conn_opts.cleansession = 1;
 	rc = MQTTClient_connect(client, &conn_opts);
+	printf("Client ID %s connected at %s\n", CLIENTID, ADDRESS);
 
 }
 
 void MQTT::publish(const char *payload, const char *topicName) {
 
 	int payloadlen = strlen(payload);
-	int qos = 0;
+	int qos = 1;
 	int retained = 0;
 	MQTTClient_deliveryToken dt;
 	rc = MQTTClient_publish(client, topicName, payloadlen, (void*) payload, qos,
 			retained, &dt);
-	printf("Waiting for up to %d seconds for publication of %s\n"
-			"on topic %s for client with ClientID: %s\n",
-			(int) (TIMEOUT / 1000), payload, topicName, CLIENTID);
 	rc = MQTTClient_waitForCompletion(client, dt, TIMEOUT);
-	printf("Message with delivery token %d delivered\n", dt);
+	printf("Publication of %s\n on topic %s\n\n", payload, topicName);
 
 }
 
 void MQTT::subscribe(const char *topic) {
-	int qos = 0;
+	int qos = 1;
 	rc = MQTTClient_subscribe(client, topic, qos);
-	printf("Subscribed to %s\n", topic);
+	printf("Subscribed to %s\n\n", topic);
 
 }
 
