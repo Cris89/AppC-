@@ -17,7 +17,7 @@ public:
 	Random();
 
 	char generateRandomChar();
-	void generateRandomString(string string);
+	void generateRandomString(char string[]);
 
 	virtual ~Random();
 

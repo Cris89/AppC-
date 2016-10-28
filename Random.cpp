@@ -7,13 +7,9 @@
 
 #include "Random.h"
 
-#include <cstdlib>
-#include <iostream>
-
-#include "stdio.h"
-#include "stdlib.h"
-
 #include "MQTT.h"
+
+#include <unistd.h>
 
 #define LENGTH 10
 #define TOPIC "RandomStringsAppC"
@@ -30,7 +26,7 @@ char Random::generateRandomChar() {
 
 }
 
-void Random::generateRandomString(string string) {
+void Random::generateRandomString(char string[]) {
 
 	srand((unsigned) time( NULL));
 
@@ -45,19 +41,22 @@ Random::~Random() {
 
 int main() {
 
-	Random random;
-	MQTT mqtt;
-
-	char randomString[LENGTH];
-	random.generateRandomString(randomString);
-
-	mqtt.connect();
-
-	char *s = randomString;
 	const char *pt = TOPIC;
 	const char *pts = TOPICSUB;
 
+	Random random;
+	MQTT mqtt;
+
+	mqtt.connect();
 	mqtt.subscribe(pts);
-	mqtt.publish(s, pt);
+
+	char randomString[LENGTH];
+
+	for (int i = 0; i <= 10; i++){
+		random.generateRandomString(randomString);
+		char *s = randomString;
+		mqtt.publish(s, pt);
+		usleep(1000000);
+	}
 
 }

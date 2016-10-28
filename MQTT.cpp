@@ -66,18 +66,18 @@ void MQTT::disconnect() {
 
 }
 
-//int MQTT::messageArrived(void *context, const char *topicName, int topicLen,
-//		MQTTClient_message *message) {
-//
-//	printf("Message arrived\n");
-//	printf("topic: %s\n", topicName);
-//	printf("message: .*s\n", message->payloadlen, message->payload);
-//
-//	MQTTClient_freeMessage(&message);
-//	MQTTClient_free((void *) topicName);
-//	return 1;
-//
-//}
+int MQTT::messageArrived(void *context, const char *topicName, int topicLen,
+		MQTTClient_message *message) {
+
+	printf("Message arrived\n");
+	printf("topic: %s\n", topicName);
+	printf("message: .*s\n", message->payloadlen, message->payload);
+
+	MQTTClient_freeMessage(&message);
+	MQTTClient_free((void *) topicName);
+	return 1;
+
+}
 
 MQTT::~MQTT() {
 	// TODO Auto-generated destructor stub
