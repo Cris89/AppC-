@@ -5,20 +5,20 @@
  *      Author: cris
  */
 
-#include "MQTT.h"
+#include "mqtt.h"
 
 #include "MQTTClient.h"
 
 #include <cstring>
 
 #define ADDRESS		"127.0.0.1:8883"
-#define CLIENTID	"AppC++"
+#define CLIENTID	"AppCpp"
 #define TIMEOUT		10000L
 
 MQTT::MQTT() {
 
-	rc = MQTTClient_create(&client, ADDRESS, CLIENTID,
-	MQTTCLIENT_PERSISTENCE_NONE, NULL);
+	rc = MQTTClient_create(&client, ADDRESS, CLIENTID, MQTTCLIENT_PERSISTENCE_NONE, NULL);
+	rc= MQTTClient_setCallbacks(client, NULL, NULL, messageArrived, NULL);
 
 }
 
@@ -32,15 +32,15 @@ void MQTT::connect() {
 
 }
 
-void MQTT::publish(const char *payload, const char *topicName) {
+void MQTT::publish(char *payload, const char *topicName) {
 
-	int payloadlen = strlen(payload);
-	int qos = 1;
-	int retained = 0;
+	MQTTClient_message msg = MQTTClient_message_initializer;
+	msg.payload = payload;
+	msg.payloadlen = strlen(payload);
+	msg.qos = 1;
+	msg.retained = 0;
 	MQTTClient_deliveryToken dt;
-	rc = MQTTClient_publish(client, topicName, payloadlen, (void*) payload, qos,
-			retained, &dt);
-	rc = MQTTClient_waitForCompletion(client, dt, TIMEOUT);
+	rc = MQTTClient_publishMessage(client, topicName, &msg, &dt);
 	printf("Publication of %s\n on topic %s\n\n", payload, topicName);
 
 }
@@ -65,15 +65,15 @@ void MQTT::disconnect() {
 
 }
 
-int MQTT::messageArrived(void *context, const char *topicName, int topicLen,
-		MQTTClient_message *message) {
+
+int MQTT::messageArrived(void *context, char *topicName, int topicLen, MQTTClient_message *message){
 
 	printf("Message arrived\n");
-	printf("topic: %s\n", topicName);
-	printf("message: .*s\n", message->payloadlen, message->payload);
+	printf("Topic: %s\n", topicName);
+	printf("Message: %.*s\n\n", message->payloadlen, message->payload);
 
 	MQTTClient_freeMessage(&message);
-	MQTTClient_free((void *) topicName);
+	MQTTClient_free(topicName);
 	return 1;
 
 }

@@ -16,13 +16,12 @@ public:
 	MQTT();
 
 	void connect();
-	void publish(const char *payload, const char *topicName);
+	void publish(char *payload, const char *topicName);
 	void subscribe(const char *topic);
 	void unsubscrube(const char *topic);
 	void disconnect();
 
-	int messageArrived(void *context, const char *topicName, int topicLen,
-			MQTTClient_message *message);
+	static MQTTClient_messageArrived messageArrived;
 
 	virtual ~MQTT();
 

@@ -5,15 +5,14 @@
  *      Author: cris
  */
 
-#include "Random.h"
-
-#include "MQTT.h"
+#include "random.h"
+#include "mqtt.h"
 
 #include <unistd.h>
 
 #define LENGTH		10
-#define TOPIC		"RandomStringsAppC"
-#define TOPICSUB	"RandomStringsAppPy"
+#define TOPIC		"RandomStringsAppCpp"
+#define TOPICSUB	"CountsAppPy"
 
 Random::Random() {
 	// TODO Auto-generated constructor stub

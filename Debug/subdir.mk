@@ -4,16 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../MQTT.cpp \
-../Random.cpp 
+../mqtt.cpp \
+../random.cpp 
 
 OBJS += \
-./MQTT.o \
-./Random.o 
+./mqtt.o \
+./random.o 
 
 CPP_DEPS += \
-./MQTT.d \
-./Random.d 
+./mqtt.d \
+./random.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
