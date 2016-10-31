@@ -43,6 +43,8 @@ int main() {
 	const char *pt = TOPIC;
 	const char *pts = TOPICSUB;
 
+	int ch;
+
 	Random random;
 	MQTT mqtt;
 
@@ -57,5 +59,9 @@ int main() {
 		mqtt.publish(s, pt);
 		usleep(1000000);
 	}
+
+	do {
+		ch = getchar();
+	} while(ch!='Q' || ch != 'q');
 
 }

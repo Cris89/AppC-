@@ -70,7 +70,7 @@ int MQTT::messageArrived(void *context, char *topicName, int topicLen, MQTTClien
 
 	printf("Message arrived\n");
 	printf("Topic: %s\n", topicName);
-	printf("Message: %.*s\n\n", message->payloadlen, message->payload);
+	printf("Message: %.*s\n\n", message->payloadlen, (char *)message->payload);
 
 	MQTTClient_freeMessage(&message);
 	MQTTClient_free(topicName);
