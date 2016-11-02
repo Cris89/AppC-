@@ -5,14 +5,18 @@
  *      Author: cris
  */
 
-#include "random.h"
-#include "mqtt.h"
-
 #include <unistd.h>
+
+#include <iostream>
+
+#include "MQTT.h"
+#include "Random.h"
 
 #define LENGTH		10
 #define TOPIC		"RandomStringsAppCpp"
 #define TOPICSUB	"CountsAppPy"
+
+using namespace std;
 
 Random::Random() {
 	// TODO Auto-generated constructor stub
@@ -36,6 +40,7 @@ void Random::generateRandomString(char string[]) {
 
 Random::~Random() {
 	// TODO Auto-generated destructor stub
+
 }
 
 int main() {
@@ -51,13 +56,15 @@ int main() {
 
 	char randomString[LENGTH];
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 50; i++) {
 		random.generateRandomString(randomString);
 		char *s = randomString;
 		mqtt.publish(s, pt);
 		usleep(1000000);
 	}
 
-	usleep(5000000);
+	cout << "Press Enter to End";
+	char ch = getchar();
+	return 0;
 
 }

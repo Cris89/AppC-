@@ -5,8 +5,7 @@
  *      Author: cris
  */
 
-#include "mqtt.h"
-
+#include "MQTT.h"
 #include "MQTTClient.h"
 
 #include <cstring>
@@ -80,4 +79,5 @@ int MQTT::messageArrived(void *context, char *topicName, int topicLen, MQTTClien
 
 MQTT::~MQTT() {
 	// TODO Auto-generated destructor stub
+
 }
