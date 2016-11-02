@@ -5,8 +5,8 @@
  *      Author: cris
  */
 
-#ifndef RANDOM_H_
-#define RANDOM_H_
+#ifndef INCLUDE_RANDOM_H_
+#define INCLUDE_RANDOM_H_
 
 #include <string>
 
@@ -21,4 +21,4 @@ public:
 
 };
 
-#endif /* RANDOM_H_ */
+#endif /* INCLUDE_RANDOM_H_ */

@@ -5,12 +5,13 @@
  *      Author: cris
  */
 
+#include "Include/Random.h"
+
 #include <unistd.h>
 
 #include <iostream>
 
-#include "MQTT.h"
-#include "Random.h"
+#include "Include/MQTT.h"
 
 #define LENGTH		10
 #define TOPIC		"RandomStringsAppCpp"

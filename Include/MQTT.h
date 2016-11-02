@@ -5,8 +5,8 @@
  *      Author: cris
  */
 
-#ifndef MQTT_H_
-#define MQTT_H_
+#ifndef INCLUDE_MQTT_H_
+#define INCLUDE_MQTT_H_
 
 #include "MQTTClient.h"
 
@@ -30,4 +30,4 @@ public:
 
 };
 
-#endif /* MQTT_H_ */
+#endif /* INCLUDE_MQTT_H_ */
