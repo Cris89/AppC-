@@ -49,7 +49,7 @@ int main() {
 	const char *pt = TOPIC;
 	const char *pts = TOPICSUB;
 
-	Random random;
+	Random rand;
 	MQTT mqtt;
 
 	mqtt.connect();
@@ -58,7 +58,7 @@ int main() {
 	char randomString[LENGTH];
 
 	for (int i = 0; i < 50; i++) {
-		random.generateRandomString(randomString);
+		rand.generateRandomString(randomString);
 		char *s = randomString;
 		mqtt.publish(s, pt);
 		usleep(1000000);
